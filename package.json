@@ -1,0 +1,14 @@
+{
+  "name": "whoami",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Who Am I? — an interactive study of the human condition, as an offline-capable PWA.",
+  "homepage": "https://theonize.github.io/WhoAmI/",
+  "scripts": {
+    "icons": "node scripts/generate-icons.mjs",
+    "serve": "node scripts/serve.mjs",
+    "check": "node --check assets/js/app.js && node --check assets/js/store.js && node --check sw.js && node -e \"import('./content/book.js').then(m=>console.log('content OK:', m.book.chapters.length, 'chapters'))\""
+  },
+  "license": "Apache-2.0"
+}

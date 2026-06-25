@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Who Am I? — A study of the human condition</title>
+    <meta
+      name="description"
+      content="An interactive study of the human condition: what is a human, what we lack apart from God, and who we are as children of God. Bible passages, subtopics, and questions for reflection."
+    />
+    <meta name="theme-color" content="#4338ca" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Who Am I?" />
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
+    <!-- Apply saved theme before paint to avoid a flash. -->
+    <script>
+      try {
+        var t = JSON.parse(localStorage.getItem("whoami:v1:theme"));
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+
+    <header class="app-header">
+      <button id="menu-toggle" class="icon-btn" aria-label="Toggle chapters" aria-expanded="false" aria-controls="sidebar">☰</button>
+      <a class="brand" href="#/">Who&nbsp;Am&nbsp;I?</a>
+      <div class="header-actions">
+        <div class="search">
+          <input id="search" type="search" placeholder="Search…" aria-label="Search the book" autocomplete="off" />
+          <div id="search-results" role="listbox" hidden></div>
+        </div>
+        <button id="install-btn" class="icon-btn" title="Install app" aria-label="Install app" hidden>⤓</button>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">☾</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside id="sidebar" class="sidebar">
+        <nav id="toc" aria-label="Table of contents"></nav>
+      </aside>
+      <main id="view" class="view" tabindex="-1">
+        <noscript>
+          <div class="noscript">
+            <h1>Who Am I?</h1>
+            <p>This interactive study needs JavaScript to display its chapters, passages, and questions. Please enable JavaScript to read it.</p>
+          </div>
+        </noscript>
+      </main>
+    </div>
+
+    <div id="backdrop"></div>
+    <div id="toast" class="toast" role="status" hidden></div>
+
+    <footer class="app-footer">
+      <p>Scripture quotations are from the World English Bible (public domain). Progress &amp; notes are stored only on your device.</p>
+    </footer>
+
+    <script type="module" src="./assets/js/app.js"></script>
+  </body>
+</html>
