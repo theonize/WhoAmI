@@ -37,8 +37,11 @@ const server = createServer(async (req, res) => {
       info = await stat(filePath).catch(() => null);
     }
     if (!info) {
-      // SPA fallback to the app shell.
-      filePath = join(ROOT, "index.html");
+      // Mirror GitHub Pages: missing paths 404. (Routing is hash-based, so no
+      // path-based SPA fallback is needed.)
+      res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+      res.end("<!doctype html><meta charset=utf-8><title>404</title><h1>404 — Not Found</h1>");
+      return;
     }
     const body = await readFile(filePath);
     res.writeHead(200, {

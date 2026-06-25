@@ -38,7 +38,11 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
       const keys = await caches.keys();
-      await Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)));
+      // Only remove this app's own outdated caches. The origin can be shared
+      // with other GitHub Pages project sites, so never touch their caches.
+      await Promise.all(
+        keys.filter((k) => k.startsWith("whoami-") && k !== CACHE).map((k) => caches.delete(k))
+      );
       await self.clients.claim();
     })()
   );
@@ -57,8 +61,12 @@ self.addEventListener("fetch", (event) => {
       (async () => {
         try {
           const fresh = await fetch(req);
-          const cache = await caches.open(CACHE);
-          cache.put("./index.html", fresh.clone());
+          // Only refresh the shell on a successful response — never cache a
+          // 404/error page (fetch resolves for HTTP errors too) as the shell.
+          if (fresh && fresh.ok) {
+            const cache = await caches.open(CACHE);
+            cache.put("./index.html", fresh.clone());
+          }
           return fresh;
         } catch {
           const cache = await caches.open(CACHE);
