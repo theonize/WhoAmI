@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Who Am I?">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4338ca"/>
+      <stop offset="1" stop-color="#7e22ce"/>
+    </linearGradient>
+  </defs>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="13" fill="url(#g)"/>
+  <circle cx="32" cy="27" r="15.5" fill="none" stroke="#fbbf24" stroke-width="3.1"/>
+  <circle cx="32" cy="26" r="9.4" fill="#f8fafc"/>
+  <path d="M13.5 57 a18.5 18.5 0 0 1 37 0 Z" fill="#f8fafc"/>
+</svg>
